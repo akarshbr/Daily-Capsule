@@ -14,7 +14,8 @@ class NewsCard extends StatelessWidget {
       required this.imageURL,
       required this.source,
       required this.content,
-      required this.url});
+      required this.url,
+      this.fetchData});
 
   final String title;
   final String author;
@@ -24,6 +25,7 @@ class NewsCard extends StatelessWidget {
   final String source;
   final String content;
   final String url;
+  final Function()? fetchData;
 
   @override
   Widget build(BuildContext context) {

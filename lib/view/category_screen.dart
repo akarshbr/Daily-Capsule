@@ -41,6 +41,7 @@ class CategoryScreen extends StatelessWidget {
                         itemCount: categoryController.newsModel.articles?.length ?? 0,
                         itemBuilder: (context, index) {
                           return NewsCard(
+                            //fetchData: () =>Provider.of<CategoryScreenController>(context,listen: false).fetchData(),
                             title:
                                 categoryController.newsModel.articles?[index].title.toString() ?? "",
                             author:

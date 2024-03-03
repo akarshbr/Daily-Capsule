@@ -15,22 +15,20 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  void fetchData(){
+    Provider.of<HomeScreenController>(context,listen: false).fetchData();
+  }
   @override
   void initState() {
     fetchData();
     super.initState();
   }
-
-  void fetchData() async {
-    Provider.of<HomeScreenController>(context, listen: false).fetchData();
-  }
-
   @override
   Widget build(BuildContext context) {
-    HomeScreenController provider = Provider.of<HomeScreenController>(context);
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Provider.of<ThemeController>(context).darkTheme ? darkThemeBGColor : lightThemeBGColor,
+        backgroundColor:
+            Provider.of<ThemeController>(context).darkTheme ? darkThemeBGColor : lightThemeBGColor,
         elevation: appBarElevation,
         title: const Text("Daily Capsule"),
         actions: [
@@ -51,34 +49,48 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       backgroundColor:
           Provider.of<ThemeController>(context).darkTheme ? darkThemeBGColor : lightThemeBGColor,
-      body: Provider.of<HomeScreenController>(context).isLoading == true
-          ? Center(child: LottieBuilder(lottie: AssetLottie("assets/animation/capsule2.json")))
-          : Provider.of<HomeScreenController>(context).code == 429
-              ? const Center(child: Text("API limit exceeded"))
-              : ListView.separated(
-                  itemCount: provider.newsModel.articles?.length ?? 0,
-                  itemBuilder: (context, index) {
-                    return NewsCard(
-                      title: provider.newsModel.articles?[index].title.toString() ?? "",
-                      author: provider.newsModel.articles?[index].author.toString() ?? "_",
-                      description: provider.newsModel.articles?[index].description.toString() ?? "",
-                      dateTime: provider.newsModel.articles?[index].publishedAt,
-                      imageURL: provider.newsModel.articles?[index].urlToImage.toString() ?? "",
-                      source: provider.newsModel.articles?[index].source?.name.toString() ?? "",
-                      content: provider.newsModel.articles?[index].content.toString() ?? "",
-                      url: provider.newsModel.articles?[index].url.toString() ?? "",
-                    );
-                  },
-                  separatorBuilder: (context, index) {
-                    return Container(
-                      height: bottomNavScreensNewsCardSeparatorHeight,
-                      width: MediaQuery.of(context).size.width,
-                      color: Provider.of<ThemeController>(context).darkTheme
-                          ? darkThemeNewsCardSeparatorColor
-                          : lightThemeNewsCardSeparatorColor,
-                    );
-                  },
-                ),
+      body: Consumer<HomeScreenController>(builder: (context, homeScreenController, _) {
+        // Provider.of<HomeScreenController>(context,listen: false).fetchData();
+        return homeScreenController.isLoading == true
+            ? Center(child: LottieBuilder(lottie: AssetLottie("assets/animation/capsule2.json")))
+            : homeScreenController.code == 429
+                ? const Center(child: Text("API limit exceeded"))
+                : ListView.separated(
+                    itemCount: homeScreenController.newsModel.articles?.length ?? 0,
+                    itemBuilder: (context, index) {
+                      return NewsCard(
+                        //fetchData: ()=>Provider.of<HomeScreenController>(context,listen: false).fetchData(),
+                        title:
+                            homeScreenController.newsModel.articles?[index].title.toString() ?? "",
+                        author: homeScreenController.newsModel.articles?[index].author.toString() ??
+                            "_",
+                        description: homeScreenController.newsModel.articles?[index].description
+                                .toString() ??
+                            "",
+                        dateTime: homeScreenController.newsModel.articles?[index].publishedAt,
+                        imageURL:
+                            homeScreenController.newsModel.articles?[index].urlToImage.toString() ??
+                                "",
+                        source: homeScreenController.newsModel.articles?[index].source?.name
+                                .toString() ??
+                            "",
+                        content:
+                            homeScreenController.newsModel.articles?[index].content.toString() ??
+                                "",
+                        url: homeScreenController.newsModel.articles?[index].url.toString() ?? "",
+                      );
+                    },
+                    separatorBuilder: (context, index) {
+                      return Container(
+                        height: bottomNavScreensNewsCardSeparatorHeight,
+                        width: MediaQuery.of(context).size.width,
+                        color: Provider.of<ThemeController>(context).darkTheme
+                            ? darkThemeNewsCardSeparatorColor
+                            : lightThemeNewsCardSeparatorColor,
+                      );
+                    },
+                  );
+      }),
     );
   }
 }

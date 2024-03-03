@@ -1,11 +1,16 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'package:http/http.dart' as http;
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:share/share.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 import '../model/news_model.dart';
+import '../utils/api_service.dart';
 
 class HomeScreenController extends ChangeNotifier {
-  late NewsModel newsModel;
+  late NewsModel newsModel=NewsModel();
   bool isLoading = false;
   int? code;
 
@@ -13,9 +18,9 @@ class HomeScreenController extends ChangeNotifier {
     isLoading = true;
     notifyListeners();
     final url = Uri.parse(
-        "https://newsapi.org/v2/top-headlines?country=in&apiKey=7b0678fc8ecd4569a3521549029a0c3e");
+        "${APIService.header}top-headlines?country=in&apiKey=${APIService.apiKey}");
     final response = await http.get(url);
-    code=response.statusCode;
+    code = response.statusCode;
     log("${response.statusCode}");
     Map<String, dynamic> decodedData = {};
     if (response.statusCode == 200) {
@@ -26,5 +31,21 @@ class HomeScreenController extends ChangeNotifier {
     newsModel = NewsModel.fromJson(decodedData);
     isLoading = false;
     notifyListeners();
+  }
+
+  Future<void> launchURL(String url) async {
+    final Uri url0 = Uri.parse(url);
+    if (!await launchUrl(url0)) {
+      throw Exception("could not launch");
+    }
+    notifyListeners();
+  }
+
+  void shareUrl({String url = ""}) {
+    try {
+      Share.share(url);
+    } catch (error) {
+      log("$error");
+    }
   }
 }

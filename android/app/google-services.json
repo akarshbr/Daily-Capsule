@@ -1,0 +1,29 @@
+{
+    "project_info": {
+      "project_number": "672117213245",
+      "project_id": "my-newsapp-dailycapsule",
+      "storage_bucket": "my-newsapp-dailycapsule.appspot.com"
+    },
+    "client": [
+      {
+        "client_info": {
+          "mobilesdk_app_id": "1:672117213245:android:d8e758bc0077918d7e4254",
+          "android_client_info": {
+            "package_name": "com.daily.capsule1"
+          }
+        },
+        "oauth_client": [],
+        "api_key": [
+          {
+            "current_key": "AIzaSyBEC71Dzw6SEsafdUcsePq7XMANaYj3vWU"
+          }
+        ],
+        "services": {
+          "appinvite_service": {
+            "other_platform_oauth_client": []
+          }
+        }
+      }
+    ],
+    "configuration_version": "1"
+  }

@@ -1,5 +1,7 @@
+import 'package:daily_report/controller/home_screen_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 import '../../utils/constants.dart';
 
@@ -26,7 +28,6 @@ class NewsDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: const Text("Daily Capsule"),
@@ -64,8 +65,17 @@ class NewsDetailsScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  TextButton(onPressed: () {}, child: const Text("Go to source")),
-                  IconButton(onPressed: (){}, icon: const Icon(Icons.share))
+                  TextButton(
+                      onPressed: () {
+                        Provider.of<HomeScreenController>(context, listen: false).launchURL(url);
+                      },
+                      child: const Text("Go to source")),
+                  IconButton(
+                      onPressed: () {
+                        String newsShare = "$title\n$url";
+                        Provider.of<HomeScreenController>(context,listen: false).shareUrl(url: newsShare);
+                      },
+                      icon: const Icon(Icons.share))
                 ],
               )
             ],

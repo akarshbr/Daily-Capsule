@@ -1,4 +1,5 @@
 import 'package:daily_report/controller/category_screen_controller.dart';
+import 'package:daily_report/controller/home_screen_controller.dart';
 import 'package:daily_report/view/category_screen.dart';
 import 'package:daily_report/view/home_screen.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,7 @@ class BottomNavigationController extends ChangeNotifier {
 
   void onItemTap(index,context) {
     selectedIndex = index;
-    if(index==1){
+     if(index==1){
       Provider.of<CategoryScreenController>(context,listen: false).fetchData();
     }
     notifyListeners();

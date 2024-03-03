@@ -15,7 +15,7 @@ void main() {
     ChangeNotifierProvider(create: (context) => BottomNavigationController()),
     ChangeNotifierProvider(create: (context) => CategoryScreenController()),
     ChangeNotifierProvider(create: (context) => ThemeController())
-  ],child: MyApp()));
+  ],child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
