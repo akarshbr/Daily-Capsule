@@ -23,6 +23,9 @@ class CategoryScreen extends StatelessWidget {
             elevation: appBarElevation,
             title: const Text("Daily Capsule"),
             bottom: TabBar(
+              tabAlignment: TabAlignment.start,
+              indicatorColor: categoryTabBarIndicatorColor,
+              labelColor: categoryTabBarLabelColor,
               isScrollable: true,
               tabs: List.generate(categoryController.categoryList.length,
                   (index) => Tab(text: categoryController.categoryList[index])),

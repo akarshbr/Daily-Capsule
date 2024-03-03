@@ -24,6 +24,10 @@ const searchBarPadding = EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 2
 const Color searchBarBGColor = Color(0xff4bb8f8);
 const Color bottomNavIconColor = Color(0xff4bb8f8);
 
+///category screen
+const Color categoryTabBarIndicatorColor = Color(0xff4bb8f8);
+const Color categoryTabBarLabelColor = Color(0xff4bb8f8);
+
 /// news card
 const newsCardContainerMarginEdgeInsets = EdgeInsets.only(bottom: 10, left: 10, right: 10);
 const newsCardTitleTextStyle = TextStyle(fontSize: 23, fontWeight: FontWeight.bold);
