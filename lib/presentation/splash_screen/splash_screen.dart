@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:daily_report/controller/theme_controller.dart';
-import 'package:daily_report/utils/constants.dart';
-import 'package:daily_report/view/main_screen.dart';
+import 'package:daily_report/presentation/home_screen/controller/theme_controller.dart';
+import 'package:daily_report/core/constants/constants.dart';
+import 'package:daily_report/presentation/bottom_navigation_screen/view/bottom_navigation_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
@@ -19,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     Timer(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => const MainScreen()));
+          context, MaterialPageRoute(builder: (context) => const BottomNavigationScreen()));
     });
     super.initState();
   }

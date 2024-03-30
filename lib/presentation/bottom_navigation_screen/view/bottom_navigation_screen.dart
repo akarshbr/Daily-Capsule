@@ -1,12 +1,12 @@
-import 'package:daily_report/controller/bottom_navigation_controller.dart';
+import 'package:daily_report/presentation/bottom_navigation_screen/controller/bottom_navigation_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../controller/theme_controller.dart';
-import '../utils/constants.dart';
+import '../../home_screen/controller/theme_controller.dart';
+import '../../../core/constants/constants.dart';
 
-class MainScreen extends StatelessWidget {
-  const MainScreen({super.key});
+class BottomNavigationScreen extends StatelessWidget {
+  const BottomNavigationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

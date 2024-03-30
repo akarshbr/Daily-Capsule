@@ -1,8 +1,8 @@
-import 'package:daily_report/view/custom_widget/news_details_screen.dart';
+import 'package:daily_report/widgets/news_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../../utils/constants.dart';
+import '../core/constants/constants.dart';
 
 class NewsCard extends StatelessWidget {
   const NewsCard(
@@ -48,34 +48,36 @@ class NewsCard extends StatelessWidget {
       child: Container(
         margin: newsCardContainerMarginEdgeInsets,
         decoration: BoxDecoration(borderRadius: borderRadius),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: newsCardTextEdgeInset,
-              child: Text(title, style: newsCardTitleTextStyle),
-            ),
-            Padding(
-              padding: newsCardTextEdgeInset,
-              child: Row(
-                children: [
-                  Text("✍️$author", style: newsCardAuthorTextStyle),
-                  sizedBoxWidth,
-                  Text(DateFormat("dd/MM/yyyy").format(dateTime!).toString())
-                ],
+        child: Card(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: newsCardTextEdgeInset,
+                child: Text(title, style: newsCardTitleTextStyle),
               ),
-            ),
-            Container(
-              height: newsCardImageHeight,
-              decoration: BoxDecoration(
-                image: DecorationImage(image: NetworkImage(imageURL), fit: BoxFit.cover),
+              Padding(
+                padding: newsCardTextEdgeInset,
+                child: Row(
+                  children: [
+                    Text("✍️$author", style: newsCardAuthorTextStyle),
+                    sizedBoxWidth,
+                    Text(DateFormat("dd/MM/yyyy").format(dateTime!).toString())
+                  ],
+                ),
               ),
-            ),
-            // Padding(
-            //   padding: const EdgeInsets.only(left: 5),
-            //   child: Text(description),
-            // )
-          ],
+              Container(
+                height: newsCardImageHeight,
+                decoration: BoxDecoration(
+                  image: DecorationImage(image: NetworkImage(imageURL), fit: BoxFit.cover),
+                ),
+              ),
+              // Padding(
+              //   padding: const EdgeInsets.only(left: 5),
+              //   child: Text(description),
+              // )
+            ],
+          ),
         ),
       ),
     );

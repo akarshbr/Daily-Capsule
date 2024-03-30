@@ -1,15 +1,20 @@
-import 'package:daily_report/controller/search_screen_controller.dart';
-import 'package:daily_report/utils/constants.dart';
+import 'package:daily_report/presentation/search_screen/controller/search_screen_controller.dart';
+import 'package:daily_report/core/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
-import '../controller/theme_controller.dart';
-import 'custom_widget/news_card.dart';
+import '../../home_screen/controller/theme_controller.dart';
+import '../../../widgets/news_card.dart';
 
-class SearchScreen extends StatelessWidget {
+class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
 
+  @override
+  State<SearchScreen> createState() => _SearchScreenState();
+}
+
+class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     var themeController = Provider.of<ThemeController>(context);
@@ -24,7 +29,7 @@ class SearchScreen extends StatelessWidget {
               padding: searchBarPadding,
               child: SearchBar(
                 onSubmitted: (controller) {
-                  searchController.searchData(searchText: controller.toLowerCase());
+                  searchController.searchData(searchText: controller.toLowerCase(),context);
                 },
                 backgroundColor: const MaterialStatePropertyAll<Color>(searchBarBGColor),
                 hintText: "Search",

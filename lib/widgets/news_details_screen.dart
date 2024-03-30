@@ -1,9 +1,9 @@
-import 'package:daily_report/controller/home_screen_controller.dart';
+import 'package:daily_report/presentation/home_screen/controller/home_screen_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-import '../../utils/constants.dart';
+import '../core/constants/constants.dart';
 
 class NewsDetailsScreen extends StatelessWidget {
   const NewsDetailsScreen(
