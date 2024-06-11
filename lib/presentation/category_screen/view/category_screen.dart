@@ -63,54 +63,59 @@ class _CategoryScreenState extends State<CategoryScreen> {
                         lottie: AssetLottie("assets/animation/capsule2.json")))
                 : categoryController.code == 429
                     ? const Center(child: Text("API limit exceeded"))
-                    : ListView.separated(
-                        itemCount:
-                            categoryController.newsModel.articles?.length ?? 0,
-                        itemBuilder: (context, index) {
-                          return NewsCard(
-                            //fetchData: () =>Provider.of<CategoryScreenController>(context,listen: false).fetchData(),
-                            title: categoryController
-                                    .newsModel.articles?[index].title
-                                    .toString() ??
-                                "",
-                            author: categoryController
-                                    .newsModel.articles?[index].author
-                                    .toString() ??
-                                "",
-                            description: categoryController
-                                    .newsModel.articles?[index].description
-                                    .toString() ??
-                                "",
-                            dateTime: categoryController
-                                .newsModel.articles?[index].publishedAt,
-                            imageURL: categoryController
-                                    .newsModel.articles?[index].urlToImage
-                                    .toString() ??
-                                "",
-                            source: categoryController
-                                    .newsModel.articles?[index].source
-                                    .toString() ??
-                                "",
-                            content: categoryController
-                                    .newsModel.articles?[index].content
-                                    .toString() ??
-                                "",
-                            url: categoryController
-                                    .newsModel.articles?[index].content
-                                    .toString() ??
-                                "",
-                          );
-                        },
-                        separatorBuilder: (context, index) {
-                          return Container(
-                            height: bottomNavScreensNewsCardSeparatorHeight,
-                            width: MediaQuery.of(context).size.width,
-                            color: themeController.darkTheme
-                                ? darkThemeNewsCardSeparatorColor
-                                : lightThemeNewsCardSeparatorColor,
-                          );
-                        },
-                      );
+                    : RefreshIndicator(
+              onRefresh: ()=>Provider.of<CategoryScreenController>(context, listen: false)
+                  .fetchData(context),
+                      color: bottomNavIconColor,
+                      backgroundColor: Colors.white,
+                      child: ListView.separated(
+                          itemCount:
+                              categoryController.newsModel.articles?.length ?? 0,
+                          itemBuilder: (context, index) {
+                            return NewsCard(
+                              title: categoryController
+                                      .newsModel.articles?[index].title
+                                      .toString() ??
+                                  "",
+                              author: categoryController
+                                      .newsModel.articles?[index].author
+                                      .toString() ??
+                                  "",
+                              description: categoryController
+                                      .newsModel.articles?[index].description
+                                      .toString() ??
+                                  "",
+                              dateTime: categoryController
+                                  .newsModel.articles?[index].publishedAt,
+                              imageURL: categoryController
+                                      .newsModel.articles?[index].urlToImage
+                                      .toString() ??
+                                  "",
+                              source: categoryController
+                                      .newsModel.articles?[index].source
+                                      .toString() ??
+                                  "",
+                              content: categoryController
+                                      .newsModel.articles?[index].content
+                                      .toString() ??
+                                  "",
+                              url: categoryController
+                                      .newsModel.articles?[index].content
+                                      .toString() ??
+                                  "",
+                            );
+                          },
+                          separatorBuilder: (context, index) {
+                            return Container(
+                              height: bottomNavScreensNewsCardSeparatorHeight,
+                              width: MediaQuery.of(context).size.width,
+                              color: themeController.darkTheme
+                                  ? darkThemeNewsCardSeparatorColor
+                                  : lightThemeNewsCardSeparatorColor,
+                            );
+                          },
+                        ),
+                    );
           }),
         ),
       );

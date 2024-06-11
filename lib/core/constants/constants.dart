@@ -30,6 +30,7 @@ const Color categoryTabBarLabelColor = Color(0xff4bb8f8);
 
 /// news card
 const newsCardContainerMarginEdgeInsets = EdgeInsets.only(bottom: 10, left: 10, right: 10);
+const newsCardBGColor = Color(0xd25ad2ff);
 const newsCardTitleTextStyle = TextStyle(fontSize: 23, fontWeight: FontWeight.bold);
 const newsCardAuthorTextStyle = TextStyle(fontSize: 20);
 const newsCardTextEdgeInset = EdgeInsets.only(left: 5);

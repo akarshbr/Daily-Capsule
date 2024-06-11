@@ -21,7 +21,7 @@ class CategoryScreenController extends ChangeNotifier {
   late NewsModel newsModel = NewsModel();
   bool isLoading = false;
 
-  void fetchData(context) async {
+   fetchData(context) async {
     isLoading = true;
     notifyListeners();
     log("CategoryScreenController -> fetchData()");

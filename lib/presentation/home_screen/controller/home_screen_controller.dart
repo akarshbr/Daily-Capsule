@@ -13,7 +13,7 @@ class HomeScreenController extends ChangeNotifier {
   bool isLoading = false;
   int? code;
 
-  void fetchData(context) async {
+   fetchData(context) async {
     isLoading = true;
     notifyListeners();
     log("HomeScreenController -> fetchData()");

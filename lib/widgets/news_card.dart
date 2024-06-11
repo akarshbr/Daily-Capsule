@@ -5,17 +5,17 @@ import 'package:intl/intl.dart';
 import '../core/constants/constants.dart';
 
 class NewsCard extends StatelessWidget {
-  const NewsCard(
-      {super.key,
-      required this.title,
-      required this.author,
-      required this.description,
-      required this.dateTime,
-      required this.imageURL,
-      required this.source,
-      required this.content,
-      required this.url,
-      this.fetchData});
+  const NewsCard({
+    super.key,
+    required this.title,
+    required this.author,
+    required this.description,
+    required this.dateTime,
+    required this.imageURL,
+    required this.source,
+    required this.content,
+    required this.url,
+  });
 
   final String title;
   final String author;
@@ -25,7 +25,6 @@ class NewsCard extends StatelessWidget {
   final String source;
   final String content;
   final String url;
-  final Function()? fetchData;
 
   @override
   Widget build(BuildContext context) {
@@ -48,36 +47,34 @@ class NewsCard extends StatelessWidget {
       child: Container(
         margin: newsCardContainerMarginEdgeInsets,
         decoration: BoxDecoration(borderRadius: borderRadius),
-        child: Card(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: newsCardTextEdgeInset,
-                child: Text(title, style: newsCardTitleTextStyle),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: newsCardTextEdgeInset,
+              child: Text(title, style: newsCardTitleTextStyle),
+            ),
+            Padding(
+              padding: newsCardTextEdgeInset,
+              child: Row(
+                children: [
+                  Text("✍️$author", style: newsCardAuthorTextStyle),
+                  sizedBoxWidth,
+                  Text(DateFormat("dd/MM/yyyy").format(dateTime!).toString())
+                ],
               ),
-              Padding(
-                padding: newsCardTextEdgeInset,
-                child: Row(
-                  children: [
-                    Text("✍️$author", style: newsCardAuthorTextStyle),
-                    sizedBoxWidth,
-                    Text(DateFormat("dd/MM/yyyy").format(dateTime!).toString())
-                  ],
-                ),
+            ),
+            Container(
+              height: newsCardImageHeight,
+              decoration: BoxDecoration(
+                image: DecorationImage(image: NetworkImage(imageURL), fit: BoxFit.cover),
               ),
-              Container(
-                height: newsCardImageHeight,
-                decoration: BoxDecoration(
-                  image: DecorationImage(image: NetworkImage(imageURL), fit: BoxFit.cover),
-                ),
-              ),
-              // Padding(
-              //   padding: const EdgeInsets.only(left: 5),
-              //   child: Text(description),
-              // )
-            ],
-          ),
+            ),
+            // Padding(
+            //   padding: const EdgeInsets.only(left: 5),
+            //   child: Text(description),
+            // )
+          ],
         ),
       ),
     );
